@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Amor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 50px; 
+            background-color: #f7e6f6; 
+            overflow-x: hidden; 
+            font-family: 'Comic Sans MS', cursive, sans-serif; 
+        }
 
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 1;
+            margin-bottom: 40px; 
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite alternate; 
+            position: relative;
+            z-index: 2;
+        }
+
+        .card h1 {
+            color: #ff69b4; 
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #888;
+        }
+
+        .song-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #ff69b4; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 25px; 
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .song-button:hover {
+            transform: scale(1.1); 
+            background-color: #ff85c1; 
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .heart-wrapper, .flower-wrapper {
+            position: fixed; 
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            animation: float 5s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart:before { top: -50%; left: 0; }
+        .heart:after { top: 0; left: 50%; }
+
+        @keyframes float {
+            0%   { transform: translateY(0) rotate(-45deg); opacity: 0.8; }
+            50%  { transform: translateY(-20px) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(0) rotate(-45deg); opacity: 0.8; }
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 2em;
+            animation: float-flower 7s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes float-flower {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            50%  { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.8; }
+        }
+
+        .image-carousel-container {
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            position: relative; 
+            z-index: 1; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .image-carousel {
+            display: flex;
+            width: fit-content;
+            animation: slide 20s infinite linear;
+        }
+
+        .image-carousel img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-carousel img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes slide {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(calc(-220px * 5)); }
+        }
+
+        .interactive-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start; 
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 40px;
+            gap: 20px;
+            z-index: 1; 
+            position: relative; 
+        }
+
+        .letrero-container { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-basis: 45%;
+            min-width: 250px;
+            box-sizing: border-box;
+            gap: 15px; 
+        }
+
+        .letrero {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%; 
+            text-align: center;
+        }
+
+        .letrero p {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #d9534f;
+            margin: 0;
+        }
+        
+        .elegant-frame {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 10px; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: inline-block; 
+            max-width: 100%; 
+        }
+
+        .elegant-frame img {
+            max-width: 250px; 
+            height: auto;
+            border-radius: 10px; 
+            display: block; 
+        }
+
+        .question-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-basis: 45%;
+            min-width: 250px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: center;
+            height: auto; 
+        }
+
+        .question-box h2 {
+            font-size: 2em;
+            color: #ff69b4;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px; 
+        }
+        
+        .button-container button {
+            padding: 10px 25px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease, padding 0.3s ease, font-size 0.3s ease;
+        }
+
+        .button-container button:hover {
+            transform: scale(1.1);
+        }
+
+        #yes-btn {
+            background-color: #5cb85c; 
+            z-index: 2;
+        }
+
+        #no-btn {
+            background-color: #d9534f; 
+            z-index: 1;
+        }
+        
+        .cat-gif {
+            max-width: 100%; 
+            height: auto;
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            margin-top: 15px; 
+        }
+
+        .elegant-message {
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+            z-index: 1; 
+            position: relative;
+        }
+        
+        .elegant-message p {
+            font-family: 'Great Vibes', cursive; 
+            font-size: 2.8em;
+            color: #5d4955; 
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="heart-wrapper"></div>
+    <div class="flower-wrapper"></div> 
+    
+    <div class="container">
+        <div class="card">
+            <h1>¡Mi Amor Precioso/a!</h1>
+            <p>Desde el primer momento en que te vi, supe que mi vida nunca volvería a ser la misma. Eres la luz que ilumina mis días, la melodía que alegra mi corazón y la persona con la que quiero compartir cada aventura.</p>
+            <p>Cada momento a tu lado es un regalo, y cada sonrisa tuya es mi mayor tesoro. Gracias por tu amor incondicional, tu apoyo y por hacer de mi mundo un lugar mucho más hermoso.</p>
+            <p>Te amo con todo mi ser, hoy y siempre.</p>
+            <p class="signature">Con todo mi cariño,<br>[Tu Nombre]</p>
+            
+            <a href="https://www.youtube.com/watch?v=IPU5ZsuRsYk" target="_blank" class="song-button">
+                presiona aqui ❤️
+            </a>
+        </div>
+    </div>
+
+    <div class="image-carousel-container">
+        <div class="image-carousel">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft1.jpg" alt="Recuerdo 1">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft2.jpeg" alt="Recuerdo 2">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft3.jpeg" alt="Recuerdo 3">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft4.jpeg" alt="Recuerdo 4">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft5.jpeg" alt="Recuerdo 5">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft1.jpg" alt="Recuerdo 1">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft2.jpeg" alt="Recuerdo 2">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft3.jpeg" alt="Recuerdo 3">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft4.jpeg" alt="Recuerdo 4">
+            <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/ft5.jpeg" alt="Recuerdo 5">
+        </div>
+    </div>
+
+    <div class="interactive-section">
+        <div class="letrero-container"> 
+            <div class="letrero">
+                <p>Nunca soltaré a mi chispitas 🚫</p>
+            </div>
+            <div class="elegant-frame">
+                <img src="https://storage.googleapis.com/gemini-prod-us-central1-838380535303-uploads/image_f6fc21.jpg-ede62248-1cd8-497b-8788-4fbc7d4a5455" alt="Mi Chispitas">
+            </div>
+        </div>
+        <div class="question-box">
+            <h2 id="love-question">¿Me amas?</h2>
+            <div class="button-container">
+                <button id="yes-btn">Sí</button>
+                <button id="no-btn">No</button>
+            </div>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExazM0ZzM5MW05b2Fkd2Z1cjBhbHNtczExczR6MThjc2t6NnlzbWJ4NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0V43eP5xN0g/giphy.gif" alt="Gatito regalando flores" class="cat-gif">
+        </div>
+    </div>
+    
+    <div class="elegant-message">
+        <p>Desde el 12 de octubre soy el hombre mas feliz</p>
+    </div>
+
+
+    <script>
+        // --- CÓDIGO DE CORAZONES ---
+        const heartWrapper = document.querySelector('.heart-wrapper');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const size = Math.random() * 20 + 10;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heartWrapper.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        setInterval(createHeart, 300);
+
+        // --- CÓDIGO INTERACTIVO ---
+        
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const loveQuestion = document.getElementById('love-question');
+        const flowerWrapper = document.querySelector('.flower-wrapper');
+
+        let yesBtnPaddingV = 10; 
+        let yesBtnPaddingH = 25; 
+        let yesBtnFontSize = 1.1; 
+        
+        let noBtnPaddingV = 10;
+        let noBtnPaddingH = 25;
+        let noBtnFontSize = 1.1;
+
+
+        // Función para crear una flor
+        function createFlower() {
+            const flower = document.createElement('span'); 
+            flower.classList.add('flower');
+            flower.innerHTML = '🌸'; 
+            
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.top = Math.random() * 100 + '%';
+            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            flower.style.opacity = Math.random() * 0.5 + 0.5;
+            flower.style.fontSize = Math.random() * 1.5 + 1 + 'em'; 
+            
+            flowerWrapper.appendChild(flower); 
+
+            setTimeout(() => {
+                flower.remove();
+            }, 7000); 
+        }
+
+        // Qué pasa al hacer clic en "Sí"
+        yesBtn.addEventListener('click', () => {
+            // Crea una explosión de 30 flores
+            for (let i = 0; i < 30; i++) {
+                createFlower();
+            }
+        });
+
+        // --- LÓGICA PARA EL BOTÓN "NO" (encoge "No", agranda "Sí") ---
+        noBtn.addEventListener('click', () => {
+            // 1. Aumentar el botón "Sí"
+            yesBtnPaddingV += 8;
+            yesBtnPaddingH += 15;
+            yesBtnFontSize += 0.2;
+            
+            yesBtn.style.padding = `${yesBtnPaddingV}px ${yesBtnPaddingH}px`;
+            yesBtn.style.fontSize = `${yesBtnFontSize}em`;
+
+            // 2. Encoger el botón "No"
+            noBtnPaddingV = Math.max(0, noBtnPaddingV - 3); 
+            noBtnPaddingH = Math.max(0, noBtnPaddingH - 6);
+            noBtnFontSize = Math.max(0.1, noBtnFontSize - 0.1); 
+
+            noBtn.style.padding = `${noBtnPaddingV}px ${noBtnPaddingH}px`;
+            noBtn.style.fontSize = `${noBtnFontSize}em`;
+        });
+
+    </script>
+</body>
+</html>
